@@ -90,6 +90,8 @@ void exe_help()
   Terminal.write("\e[97m  Show this help.\r\n");
   Terminal.write("\e[93minfo\r\n");
   Terminal.write("\e[97m  Show system info.\r\n");
+  Terminal.write("\e[93mreboot\r\n");
+  Terminal.write("\e[97m  Restart the system.\e[92m\r\n");
   Terminal.write("\e[93mscan\r\n");
   Terminal.write("\e[97m  Scan for WiFi networks.\r\n");
   Terminal.write("\e[93mwifi SSID [PASSWORD]\r\n");
@@ -104,10 +106,8 @@ void exe_help()
   Terminal.write("\e[97m  Ping a HOST (IP or host name).\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    ping 8.8.8.8\e[92m\r\n");
-  Terminal.write("\e[93mreboot\r\n");
-  Terminal.write("\e[97m  Restart the system.\e[92m\r\n");
   Terminal.write("\e[93mkeyb LAYOUT\r\n");
-  Terminal.write("\e[97m  Set keyboard layout.  LAYOUT can be 'us', 'gb', 'de', 'it', 'es', 'fr', 'be', 'no'.\r\n");
+  Terminal.write("\e[97m  Set keyboard layout.  LAYOUT can be 'us', 'gb', 'de', 'fr', 'es', 'it', 'no', 'be'.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    keyb fr\e[92m\r\n");
   error = false;
@@ -345,6 +345,9 @@ void exe_keyb()
   if (PS2Controller.keyboard()->isKeyboardAvailable()) {
     char layout[3];
     auto inputLine = LineEditor.get();
+    // We follow xkeyboard first, then dosbox.
+    // https://manpages.debian.org/bookworm/xkb-data/xkeyboard-config.7.en.html
+    // https://www.dosbox.com/wiki/KEYB
     if (sscanf(inputLine, "keyb %2s", layout) == 1) {
       if (strcasecmp(layout, "US") == 0)
         Terminal.keyboard()->setLayout(&fabgl::USLayout);
@@ -354,9 +357,13 @@ void exe_keyb()
         Terminal.keyboard()->setLayout(&fabgl::UKLayout);
       else if (strcasecmp(layout, "DE") == 0)
         Terminal.keyboard()->setLayout(&fabgl::GermanLayout);
+      else if (strcasecmp(layout, "GR") == 0)
+        Terminal.keyboard()->setLayout(&fabgl::GermanLayout);
       else if (strcasecmp(layout, "IT") == 0)
         Terminal.keyboard()->setLayout(&fabgl::ItalianLayout);
       else if (strcasecmp(layout, "ES") == 0)
+        Terminal.keyboard()->setLayout(&fabgl::SpanishLayout);
+      else if (strcasecmp(layout, "SP") == 0)
         Terminal.keyboard()->setLayout(&fabgl::SpanishLayout);
       else if (strcasecmp(layout, "FR") == 0)
         Terminal.keyboard()->setLayout(&fabgl::FrenchLayout);
