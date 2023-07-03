@@ -68,7 +68,8 @@ fabgl::LineEditor        LineEditor(&Terminal);
 void exe_info()
 {
   Terminal.write("\e[97m* * FabGL - Network VT/ANSI Terminal\r\n");
-  Terminal.write("\e[94m* * 2019-2022 by Fabrizio Di Vittorio - www.fabgl.com\e[92m\r\n\n");
+  Terminal.write("\e[94m* * 2019-2022 by Fabrizio Di Vittorio - www.fabgl.com\e[92m\r\n");
+  Terminal.write("\e[94m* * 2023-2023 by Mikael O. Bonnier - github.com/mobluse\e[92m\r\n\n");
   Terminal.printf("\e[92mScreen Size        :\e[93m %d x %d\r\n", DisplayController.getViewPortWidth(), DisplayController.getViewPortHeight());
   Terminal.printf("\e[92mTerminal Size      :\e[93m %d x %d\r\n", Terminal.getColumns(), Terminal.getRows());
   Terminal.printf("\e[92mFree DMA Memory    :\e[93m %d\r\n", heap_caps_get_free_size(MALLOC_CAP_DMA));
@@ -86,19 +87,19 @@ void exe_info()
 void exe_help()
 {
   Terminal.write("\e[93mhelp\e[92m\r\n");
-  Terminal.write("\e[97m  Shows this help.\r\n");
+  Terminal.write("\e[97m  Show this help.\r\n");
   Terminal.write("\e[93minfo\r\n");
-  Terminal.write("\e[97m  Shows system info.\r\n");
+  Terminal.write("\e[97m  Show system info.\r\n");
   Terminal.write("\e[93mscan\r\n");
   Terminal.write("\e[97m  Scan for WiFi networks.\r\n");
-  Terminal.write("\e[93mwifi [SSID PASSWORD]\r\n");
+  Terminal.write("\e[93mwifi SSID [PASSWORD]\r\n");
   Terminal.write("\e[97m  Connect to SSID using PASSWORD.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    wifi MyWifi MyPassword\r\n");
   Terminal.write("\e[93mtelnet HOST [PORT]\r\n");
   Terminal.write("\e[97m  Open telnet session with HOST (IP or host name) using PORT.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
-  Terminal.write("\e[97m    telnet towel.blinkenlights.nl\e[92m\r\n");
+  Terminal.write("\e[97m    telnet telehack.com\e[92m\r\n");
   Terminal.write("\e[93mping HOST\r\n");
   Terminal.write("\e[97m  Ping a HOST (IP or host name).\r\n");
   Terminal.write("\e[97m  Example:\r\n");
@@ -106,9 +107,9 @@ void exe_help()
   Terminal.write("\e[93mreboot\r\n");
   Terminal.write("\e[97m  Restart the system.\e[92m\r\n");
   Terminal.write("\e[93mkeyb LAYOUT\r\n");
-  Terminal.write("\e[97m  Set keyboard layout. LAYOUT can be 'us', 'uk', 'de', 'it', 'es', 'fr', 'be', 'no'\r\n");
+  Terminal.write("\e[97m  Set keyboard layout.  LAYOUT can be 'us', 'gb', 'de', 'it', 'es', 'fr', 'be', 'no'.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
-  Terminal.write("\e[97m    keyb de\e[92m\r\n");
+  Terminal.write("\e[97m    keyb fr\e[92m\r\n");
   error = false;
   state = State::Prompt;
 }
@@ -256,6 +257,7 @@ int clientWaitForChar()
 
 void exe_telnet()
 {
+  static uint8_t ws[] = "\xFF\xFA\x1F" "\x00\x50\x00\x19" "\xFF\xF0"; // IAC SB WINDOWSIZE 0 80 0 25(=\x19) IAC SE
   // process data from remote host (up to 1024 codes at the time)
   for (int i = 0; client.available() && i < 1024; ++i) {
     int c = client.read();
@@ -266,7 +268,8 @@ void exe_telnet()
       if (cmd == 0xFD && opt == 0x1F) {
         // DO WINDOWSIZE
         client.write("\xFF\xFB\x1F", 3); // IAC WILL WINDOWSIZE
-        client.write("\xFF\xFA\x1F" "\x00\x50\x00\x19" "\xFF\xF0", 9);  // IAC SB WINDOWSIZE 0 80 0 25 IAC SE
+        ws[6] = (uint8_t)Terminal.getRows();
+        client.write(ws, 9);
       } else if (cmd == 0xFD && opt == 0x18) {
         // DO TERMINALTYPE
         client.write("\xFF\xFB\x18", 3); // IAC WILL TERMINALTYPE
@@ -345,6 +348,8 @@ void exe_keyb()
     if (sscanf(inputLine, "keyb %2s", layout) == 1) {
       if (strcasecmp(layout, "US") == 0)
         Terminal.keyboard()->setLayout(&fabgl::USLayout);
+      else if (strcasecmp(layout, "GB") == 0)
+        Terminal.keyboard()->setLayout(&fabgl::UKLayout);
       else if (strcasecmp(layout, "UK") == 0)
         Terminal.keyboard()->setLayout(&fabgl::UKLayout);
       else if (strcasecmp(layout, "DE") == 0)
@@ -375,7 +380,7 @@ void exe_keyb()
 
 void setup()
 {
-  //Serial.begin(115200); // DEBUG ONLY
+  // Serial.begin(115200); // DEBUG ONLY
 
   PS2Controller.begin(PS2Preset::KeyboardPort0);
 
@@ -456,4 +461,3 @@ void loop()
 
   }
 }
-
