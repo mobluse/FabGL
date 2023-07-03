@@ -1,5 +1,5 @@
 # FabGL
-[mobluse](https://github.com/mobluse) currently works on NetworkTerminal.
+[mobluse](https://github.com/mobluse) currently works on [NetworkTerminal](https://github.com/mobluse/FabGL/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino).
 ### **ESP32** Display Controller (VGA, Color NTSC/PAL Composite, I2C and SPI displays), PS/2 Mouse and Keyboard Controller, Graphics Library, Sound Engine, Graphical User Interface (GUI), Game/Emulation Engine and ANSI/VT Terminal
 
 **[Please look here for full API documentation](http://www.fabglib.org)**
