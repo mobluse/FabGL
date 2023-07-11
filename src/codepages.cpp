@@ -107,6 +107,13 @@ const VirtualKeyToASCII VK2ASCII437[] = {
   { VK_CARET_Y,      0x59 },    // Ŷ -> Y  (not in cp437)
   { VK_UMLAUT_y,     0x98 },    // ÿ
   { VK_UMLAUT_Y,     0x59 },    // Ÿ -> Y  (not in cp437)
+  { VK_aring,        0x86 },    // å
+  { VK_ARING,        0x8f },    // Å
+  { VK_aelig,        0x91 },    // æ
+  { VK_AELIG,        0x92 },    // Æ
+  { VK_oslash,       0x94 },    // ø -> ö  (not in cp437)
+  { VK_OSLASH,       0x99 },    // Ø -> Ö  (not in cp437)
+  { VK_DIAERESIS,    0x7e },    // ¨ -> ~  (not in cp437)
 
   { VK_NONE,         0x00 },    // end of table
 };
