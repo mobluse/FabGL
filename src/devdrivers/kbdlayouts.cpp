@@ -985,7 +985,7 @@ const KeyboardLayout NorwegianLayout{
   {
     { VK_VERTICALBAR, { 0, 0, 0, 1 }, VK_SECTION },      // SHIFT "|" = "§"
     { VK_2,           { 0, 0, 0, 1 }, VK_QUOTEDBL },     // SHIFT "2" = """
-    { VK_4,           { 0, 0, 0, 1 }, VK_CURRENCY },     // SHIFT "4" = "¤"
+    { VK_4,           { 0, 0, 0, 1 }, VK_CURRENCY },     // SHIFT "4" = "¤" not in cp437
     { VK_6,           { 0, 0, 0, 1 }, VK_AMPERSAND },    // SHIFT "6" = "&"
     { VK_7,           { 0, 0, 0, 1 }, VK_SLASH },        // SHIFT "7" = "/"
     { VK_8,           { 0, 0, 0, 1 }, VK_LEFTPAREN },    // SHIFT "8" = "("
@@ -1018,6 +1018,9 @@ const KeyboardLayout NorwegianLayout{
     { VK_DIAERESIS,   { 0, 0, 1, 0 }, VK_TILDE },        // ALTGR "¨" = "~"
     { VK_e,           { 0, 0, 1, 0 }, VK_EURO },         // ALTGR "e" = "€"
     { VK_m,           { 0, 0, 1, 0 }, VK_MU },           // ALTGR "m" = "µ"
+    { VK_4,           { 0, 0, 1, 1 }, VK_YEN },          // ALTGR "4" = "￥"
+    { VK_5,           { 0, 0, 1, 1 }, VK_CENT },         // ALTGR "5" = ""
+    { VK_PLUS,        { 0, 0, 1, 0 }, VK_BACKSLASH },    // ALTGR "+" = "\"
     { VK_oslash,      { 0, 0, 1, 0 }, VK_UMLAUT_o },     // ALTGR "ø" = "ö"
     { VK_oslash,      { 0, 0, 1, 1 }, VK_UMLAUT_O },     // SHIFT ALTGR "ø" = "Ö"
     { VK_OSLASH,      { 0, 0, 1, 0 }, VK_UMLAUT_O },     // ALTGR "Ø" = "Ö"
@@ -1026,10 +1029,13 @@ const KeyboardLayout NorwegianLayout{
     { VK_aelig,       { 0, 0, 1, 1 }, VK_UMLAUT_A },     // SHIFT ALTGR "æ" = "Ä"
     { VK_AELIG,       { 0, 0, 1, 0 }, VK_UMLAUT_A },     // ALTGR "Æ" = "Ä"
     { VK_AELIG,       { 0, 0, 1, 1 }, VK_UMLAUT_a },     // SHIFT ALTGR "Æ" = "ä"
+    { VK_LESS,        { 0, 0, 1, 0 }, VK_VERTICALBAR },  // ALTGR "<" = "|"
     { VK_c,           { 0, 0, 1, 0 }, VK_CEDILLA_c },    // ALTGR "c" = "ç"
     { VK_c,           { 0, 0, 1, 1 }, VK_CEDILLA_C },    // SHIFT ALTGR "c" = "Ç"
     { VK_C,           { 0, 0, 1, 0 }, VK_CEDILLA_C },    // ALTGR "C" = "Ç"
     { VK_C,           { 0, 0, 1, 1 }, VK_CEDILLA_c },    // SHIFT ALTGR "C" = "ç"
+    { VK_COMMA,       { 0, 0, 1, 0 }, VK_LESS },         // ALTGR "," = "<"
+    { VK_PERIOD,      { 0, 0, 1, 0 }, VK_GREATER },      // ALTGR "." = ">"
     { VK_NONE,        { 0, 0, 0, 0 }, VK_NONE }          // END MARKER
   },
 
