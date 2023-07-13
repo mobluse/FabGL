@@ -36,8 +36,6 @@
  */
 
 
-#include <cstring>
-
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 
@@ -1463,7 +1461,7 @@ enum VirtualKey {
 
   VK_TILDE_A,         /**< Upper case tilde A: Ã */
   VK_TILDE_O,         /**< Upper case tilde O: Õ */
-  VK_TILDE_N,		      /**< Upper case tilde N: Ñ */
+  VK_TILDE_N,         /**< Upper case tilde N: Ñ */
 
   VK_UPPER_a,		      /**< primera: a */
   VK_ESZETT,          /**< Eszett: ß */
@@ -1475,13 +1473,15 @@ enum VirtualKey {
   VK_CURRENCY,        /**< Currency   : ¤ */
   VK_MU,              /**< Mu         : µ */
   
-  VK_aelig,           /** Lower case aelig  : æ */
-  VK_oslash,          /** Lower case oslash : ø */
-  VK_aring,           /** Lower case aring  : å */
+  VK_aelig,           /**< Lower case aelig  : æ */
+  VK_oslash,          /**< Lower case oslash : ø */
+  VK_aring,           /**< Lower case aring  : å */
 
-  VK_AELIG,           /** Upper case aelig  : Æ */
-  VK_OSLASH,          /** Upper case oslash : Ø */
-  VK_ARING,           /** Upper case aring  : Å */
+  VK_AELIG,           /**< Upper case aelig  : Æ */
+  VK_OSLASH,          /**< Upper case oslash : Ø */
+  VK_ARING,           /**< Upper case aring  : Å */
+
+  VK_CENT,            /**< Cent       : ¢ */
   
   // Japanese layout support
   VK_YEN,
