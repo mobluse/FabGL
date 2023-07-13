@@ -114,8 +114,11 @@ const VirtualKeyToASCII VK2ASCII437[] = {
   { VK_oslash,       0x94 },    // ø -> ö  (not in cp437)
   { VK_OSLASH,       0x99 },    // Ø -> Ö  (not in cp437)
   { VK_DIAERESIS,    0x7e },    // ¨ -> ~  (not in cp437)
-
-  { VK_NONE,         0x00 },    // end of table
+  { VK_SECTION,      0xAB },    // § (0x15) -> ½  (in cp437, but doesn't work)
+  { VK_CURRENCY,     0x24 },    // ¤ (0x0f) -> $  (in cp437, but doesn't work)
+  { VK_YEN,          0x9D },    // ￥
+  { VK_CENT,         0x9B },    // ¢
+  { VK_NONE,         0x00 }     // end of table
 };
 
 const CodePage CodePage437 = {
