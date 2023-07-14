@@ -1,9 +1,9 @@
 # FabGL-N
-I, [mobluse](https://github.com/mobluse), started improving FabGL on July 3 2023 and currently work on [NetworkTerminal](https://github.com/mobluse/FabGL-N/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino). I use a LILYGO TTGO VGA32_1.4 that costed 156 SEK (including shipping) i.e. about $15 or 15€. If you already have PS/2 keyboard and mouse (or that works with passive USB to PS/2 adapters) and a VGA screen, this can be a cheap system. I fixed a problem that Telnet reported the wrong number of rows. I got nordic characters working in the Norwegian keyboard and added characters to that and to the German keyboard. There are still some elusive bugs that I reported to the main repo.
+I, [mobluse](https://github.com/mobluse), started improving FabGL 1.0.9 on July 3 2023 and currently work on [NetworkTerminal](https://github.com/mobluse/FabGL-N/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino). I fixed a problem that Telnet reported the wrong number of rows. I got the nordic characters working in the Norwegian keyboard and added characters to that and to the German keyboard. There are still some elusive bugs that I reported to the main repo. I use a LILYGO TTGO VGA32_1.4 that costed 156 SEK (including shipping) i.e. about $15 or €15. If you already have PS/2 keyboard and mouse (or that works with passive USB to PS/2 adapters) and a VGA screen, this can be a cheap system, and also if you can buy keyboard, mouse, and screen cheaply at e.g. a thrift store. 
 
 [![Click picture to see video!](https://img.youtube.com/vi/D1olWSPX-cc/0.jpg)](https://www.youtube.com/watch?v=D1olWSPX-cc "Click picture to see video! telnet telehack using TTGO VGA32_1.4 w/ FabGL NetworkTerminal VT100 (ESP32) improved")
 
-The rest of this page is the original.
+The rest of this page is from the original.
 ### **ESP32** Display Controller (VGA, Color NTSC/PAL Composite, I2C and SPI displays), PS/2 Mouse and Keyboard Controller, Graphics Library, Sound Engine, Graphical User Interface (GUI), Game/Emulation Engine and ANSI/VT Terminal
 
 **[Please look here for full API documentation](http://www.fabglib.org)**
