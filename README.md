@@ -1,5 +1,9 @@
-# FabGL
-[mobluse](https://github.com/mobluse) currently works on [NetworkTerminal](https://github.com/mobluse/FabGL/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino).
+# FabGL-N
+I, [mobluse](https://github.com/mobluse), started improving FabGL July 3 2023 and currently work on [NetworkTerminal](https://github.com/mobluse/FabGL-N/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino). I fixed a problem that Telnet reported the wrong number of rows. I got nordic characters working in the Norwegian keyboard and added characters to that and to the German keyboard. There are still some elusive bugs that I reported to the main repo.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D1olWSPX-cc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Click picture to see video!](https://img.youtube.com/vi/D1olWSPX-cc/0.jpg)](https://www.youtube.com/watch?v=**StTqXEQ2l-Y** "telnet telehack using TTGO VGA32_1.4 w/ FabGL NetworkTerminal VT100 (ESP32) improved")
+
+The rest of this page is the original.
 ### **ESP32** Display Controller (VGA, Color NTSC/PAL Composite, I2C and SPI displays), PS/2 Mouse and Keyboard Controller, Graphics Library, Sound Engine, Graphical User Interface (GUI), Game/Emulation Engine and ANSI/VT Terminal
 
 **[Please look here for full API documentation](http://www.fabglib.org)**
