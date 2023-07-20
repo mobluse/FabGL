@@ -38,6 +38,8 @@ char const * AUTOEXEC = "info\r"
                         "scan\r";
 
 
+#define GRAPHCTRLR
+
 enum class State { Prompt,
                    PromptInput,
                    UnknownCommand,
@@ -49,7 +51,8 @@ enum class State { Prompt,
                    Scan,
                    Ping,
                    Reset,
-                   Keyb
+                   Keyb,
+                   Clear
                  };
 
 
@@ -58,8 +61,11 @@ WiFiClient   client;
 char const * currentScript = nullptr;
 bool         error = false;
 
-
-fabgl::VGATextController DisplayController;
+#ifdef GRAPHCTRLR
+fabgl::VGA16Controller   DisplayController;
+#else
+fabgl::VGATextController   DisplayController;
+#endif
 fabgl::PS2Controller     PS2Controller;
 fabgl::Terminal          Terminal;
 fabgl::LineEditor        LineEditor(&Terminal);
@@ -68,8 +74,8 @@ fabgl::LineEditor        LineEditor(&Terminal);
 void exe_info()
 {
   Terminal.write("\e[97m* * FabGL - Network VT/ANSI Terminal\r\n");
-  Terminal.write("\e[94m* * 2019-2022 by Fabrizio Di Vittorio - www.fabgl.com\e[92m\r\n");
-  Terminal.write("\e[94m* * 2023-2023 by Mikael O. Bonnier - github.com/mobluse\e[92m\r\n\n");
+  Terminal.write("\e[94m* * 2019-2022 by Fabrizio Di Vittorio - www.fabgl.com\r\n");
+  Terminal.write("* * 2023-2023 by Mikael O. Bonnier - github.com/mobluse\r\n\n");
   Terminal.printf("\e[92mScreen Size        :\e[93m %d x %d\r\n", DisplayController.getViewPortWidth(), DisplayController.getViewPortHeight());
   Terminal.printf("\e[92mTerminal Size      :\e[93m %d x %d\r\n", Terminal.getColumns(), Terminal.getRows());
   Terminal.printf("\e[92mFree DMA Memory    :\e[93m %d\r\n", heap_caps_get_free_size(MALLOC_CAP_DMA));
@@ -107,7 +113,7 @@ void exe_help()
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    ping 8.8.8.8\e[92m\r\n");
   Terminal.write("\e[93mkeyb LAYOUT\r\n");
-  Terminal.write("\e[97m  Set keyboard layout.  LAYOUT can be 'us', 'gb', 'de', 'fr', 'es', 'it', 'no', 'be'.\r\n");
+  Terminal.write("\e[97m  Set keyboard layout. LAYOUT can be  us, uk, de, fr, es, it, no, be.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    keyb fr\e[92m\r\n");
   error = false;
@@ -136,6 +142,8 @@ void decode_command()
     state = State::Reset;
   else if (strncmp(inputLine, "keyb", 4) == 0)
     state = State::Keyb;
+  else if (strncmp(inputLine, "clear", 5) == 0 || strncmp(inputLine, "cls", 3) == 0)
+    state = State::Clear;
   else
     state = State::UnknownCommand;
 }
@@ -392,7 +400,11 @@ void setup()
   PS2Controller.begin(PS2Preset::KeyboardPort0);
 
   DisplayController.begin();
+#ifdef GRAPHCTRLR
+  DisplayController.setResolution(VGA_640x480_60Hz);
+#else
   DisplayController.setResolution();
+#endif
 
   Terminal.begin(&DisplayController);
   Terminal.connectLocally();      // to use Terminal.read(), available(), etc..
@@ -456,13 +468,18 @@ void loop()
       exe_keyb();
       break;
 
+    case State::Clear:
+      Terminal.clear();
+      state = State::Prompt;
+      break;
+
     case State::UnknownCommand:
       Terminal.write("\r\nMistake\r\n");
       state = State::Prompt;
       break;
 
     default:
-      Terminal.write("\r\nNot Implemeted\r\n");
+      Terminal.write("\r\nNot Implemented\r\n");
       state = State::Prompt;
       break;
 
