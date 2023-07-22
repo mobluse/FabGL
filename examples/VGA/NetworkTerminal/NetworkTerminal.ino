@@ -37,7 +37,6 @@ char const * AUTOEXEC = "info\r"
                         "keyb us\r"
                         "scan\r";
 
-
 #define GRAPHCTRLR
 
 enum class State { Prompt,
@@ -100,20 +99,20 @@ void exe_help()
   Terminal.write("\e[97m  Restart the system.\e[92m\r\n");
   Terminal.write("\e[93mscan\r\n");
   Terminal.write("\e[97m  Scan for WiFi networks.\r\n");
-  Terminal.write("\e[93mwifi SSID [PASSWORD]\r\n");
+  Terminal.write("\e[93mwifi <SSID> [PASSWORD]\r\n");
   Terminal.write("\e[97m  Connect to SSID using PASSWORD.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    wifi MyWifi MyPassword\r\n");
-  Terminal.write("\e[93mtelnet HOST [PORT]\r\n");
+  Terminal.write("\e[93mtelnet <HOST> [PORT]\r\n");
   Terminal.write("\e[97m  Open telnet session with HOST (IP or host name) using PORT.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    telnet telehack.com\e[92m\r\n");
-  Terminal.write("\e[93mping HOST\r\n");
+  Terminal.write("\e[93mping <HOST>\r\n");
   Terminal.write("\e[97m  Ping a HOST (IP or host name).\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    ping 8.8.8.8\e[92m\r\n");
-  Terminal.write("\e[93mkeyb LAYOUT\r\n");
-  Terminal.write("\e[97m  Set keyboard layout. LAYOUT can be  us, uk, de, fr, es, it, no, be.\r\n");
+  Terminal.write("\e[93mkeyb [us|uk|de|fr|es|it|no|be]\r\n");
+  Terminal.write("\e[97m  Set keyboard layout.\r\n");
   Terminal.write("\e[97m  Example:\r\n");
   Terminal.write("\e[97m    keyb fr\e[92m\r\n");
   error = false;
@@ -397,11 +396,28 @@ void setup()
 {
   // Serial.begin(115200); // DEBUG ONLY
 
-  PS2Controller.begin(PS2Preset::KeyboardPort0);
+#ifdef GRAPHCTRLR
+  disableCore0WDT();
+  disableCore1WDT();
+
+  // Reduces some defaults to save RAM...
+  fabgl::VGAController::queueSize                    = 128;
+  fabgl::Terminal::inputQueueSize                    = 32;
+  fabgl::Terminal::inputConsumerTaskStackSize        = 1300;
+  fabgl::Terminal::keyboardReaderTaskStackSize       = 800;
+  fabgl::Keyboard::scancodeToVirtualKeyTaskStackSize = 1500;
+#endif
+
+  // because mouse is optional, don't re-try if it is not found (to speed-up boot)
+  fabgl::Mouse::quickCheckHardware();
+
+  // keyboard configured on port 0, and optionally mouse on port 1
+  PS2Controller.begin(PS2Preset::KeyboardPort0_MousePort1);
 
   DisplayController.begin();
 #ifdef GRAPHCTRLR
-  DisplayController.setResolution(VGA_640x480_60Hz);
+  // setup VGA (default configuration with 64 colors)
+  DisplayController.setResolution(VGA_640x480_60Hz);      // good when using VGA16Controller
 #else
   DisplayController.setResolution();
 #endif
