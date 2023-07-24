@@ -1,11 +1,18 @@
 # FabGL-N
-I, [mobluse](https://github.com/mobluse), started improving FabGL 1.0.9 on July 3 2023 and currently work on [NetworkTerminal](https://github.com/mobluse/FabGL-N/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino). I fixed a problem that Telnet reported the wrong number of rows. I got the scandinavian characters working in the Norwegian keyboard and added characters to that and to the German keyboard using AltGr and Shift+AltGr. There are still some elusive, keyboard related, bugs that I reported to the main repo, [FabGL](https://github.com/fdivitto/FabGL).
+I, [mobluse](https://github.com/mobluse), started improving FabGL 1.0.9 on July 3 2023 and currently work on [NetworkTerminal](https://github.com/mobluse/FabGL-N/blob/master/examples/VGA/NetworkTerminal/NetworkTerminal.ino). I fixed a problem that Telnet reported the wrong number of rows. I got Graphics Controller to work in telnet, which is demoed in the second video. I got the scandinavian characters working in the Norwegian keyboard and added characters to that and to the German keyboard using AltGr and Shift+AltGr. There are still some elusive, keyboard related, bugs that I reported to the main repo, [FabGL](https://github.com/fdivitto/FabGL).
 
-I use a LILYGO TTGO VGA32_1.4 that costed 156 SEK (including shipping) i.e. about $15 or €15. If you already have a PS/2 keyboard and a PS/2 mouse (or USB devices that work with passive USB to PS/2 adapters) and a VGA screen, this can be a cheap system, and also if you can buy keyboard, mouse, and screen cheaply at e.g. a thrift store. 
+I use a LILYGO TTGO VGA32_V1.4 that costed 156 SEK (including shipping) i.e. about $15 or €15. If you already have a PS/2 keyboard and a PS/2 mouse (or USB devices that work with passive USB to PS/2 adapters) and a VGA screen, this can be a cheap system, and also if you can buy keyboard, mouse, and screen cheaply at e.g. a thrift store. 
 
-### telnet telehack using TTGO VGA32_1.4 w/ FabGL NetworkTerminal, improved (click for video):
+### telnet telehack using TTGO VGA32_V1.4 w/ FabGL NetworkTerminal, improved (click for video):
 
-[![Click picture to see video!](https://img.youtube.com/vi/D1olWSPX-cc/0.jpg)](https://www.youtube.com/watch?v=D1olWSPX-cc "Click picture to see video! telnet telehack using TTGO VGA32_1.4 w/ FabGL NetworkTerminal VT100 (ESP32) improved")
+[![Click picture to see video!](https://img.youtube.com/vi/D1olWSPX-cc/0.jpg)](https://www.youtube.com/watch?v=D1olWSPX-cc "Click picture to see video! telnet telehack using TTGO VGA32_V1.4 w/ FabGL NetworkTerminal VT100 (ESP32) improved")
+
+### TeleBASIC with FabGL graphics, sprite, and sound on TTGO VGA32 v1.4 (ESP32) over telnet and WiFi (click for video):
+
+[![Click picture to see video!](https://img.youtube.com/vi/YRwfwXCcyoI/0.jpg)](https://www.youtube.com/watch?v=YRwfwXCcyoI "Click picture to see video! TeleBASIC with FabGL graphics, sprite, and sound on TTGO VGA32 v1.4 (ESP32) over telnet and WiFi")
+
+The examples are at https://github.com/mobluse/telehack-basic.
+Scripts in TeleBASIC for Telehack.com. The scripts, except color.bas, are translations of the scripts of the same name in the file programs.h in MultitaskingCPM in FabGL.
 
 The rest of this page is from the original FabGL 1.0.9.
 # FabGL
