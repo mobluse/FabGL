@@ -114,10 +114,22 @@ const VirtualKeyToASCII VK2ASCII437[] = {
   { VK_oslash,       0x94 },    // ø -> ö  (not in cp437)
   { VK_OSLASH,       0x99 },    // Ø -> Ö  (not in cp437)
   { VK_DIAERESIS,    0x7e },    // ¨ -> ~  (not in cp437)
-  { VK_SECTION,      0xAB },    // § (0x15) -> ½  (in cp437, but doesn't work)
+  { VK_SECTION,      0xab },    // § (0x15) -> ½  (in cp437, but doesn't work)
   { VK_CURRENCY,     0x24 },    // ¤ (0x0f) -> $  (in cp437, but doesn't work)
-  { VK_YEN,          0x9D },    // ￥
-  { VK_CENT,         0x9B },    // ¢
+  { VK_YEN,          0x9d },    // ￥
+  { VK_CENT,         0x9b },    // ¢
+  { VK_FRAC12,       0xab },    // ½
+  { VK_alpha,        0xe0 },    // 
+  { VK_beta,         0xe1 },    // 
+  { VK_Gamma,        0xe2 },    // 
+  { VK_delta,        0xeb },    // δ
+  { VK_epsilon,      0xee },    // 
+  { VK_theta,        0xe9 },    // 
+  { VK_pi,           0xe3 },    // π
+  { VK_sigma,        0xe5 },    // 
+  { VK_tau,          0xe7 },    // 
+  { VK_phi,          0xed },    // 
+  { VK_Omega,        0xea },    // 
   { VK_NONE,         0x00 }     // end of table
 };
 
