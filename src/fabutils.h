@@ -1481,7 +1481,21 @@ enum VirtualKey {
   VK_OSLASH,          /**< Upper case oslash : Ø */
   VK_ARING,           /**< Upper case aring  : Å */
 
+  VK_alpha,           /**< Lower case alpha  : - */ 
+  VK_beta,            /**< Lower case beta   : - */
+  VK_Gamma,           /**< Upper case gamma  : - */
+  VK_delta,           /**< Lower case delta  : δ */
+  VK_epsilon,         /**< Lower case epsilon: - */
+  VK_theta,           /**< Lower case theta  : - */
+  VK_pi,              /**< Lower case pi     : π */
+  VK_sigma,           /**< Lower case sigma  : - */
+  VK_tau,             /**< Lower case tau    : - */
+  VK_phi,             /**< Lower case phi    : - */
+  VK_Omega,           /**< Upper case omega  : - */
   VK_CENT,            /**< Cent       : ¢ */
+  VK_FRAC12,          /**< Half       : ½ */
+  VK_GRAVEACCENTDEAD, /**< Grave accent Dead : ` */
+  VK_TILDEDEAD,       /**< Tilde Dead : ~ */
   
   // Japanese layout support
   VK_YEN,
