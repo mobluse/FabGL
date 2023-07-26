@@ -992,7 +992,7 @@ const KeyboardLayout NorwegianLayout{
     { VK_9,           { 0, 0, 0, 1 }, VK_RIGHTPAREN },   // SHIFT "9" = ")"
     { VK_0,           { 0, 0, 0, 1 }, VK_EQUALS },       // SHIFT "0" = "="
     { VK_PLUS,        { 0, 0, 0, 1 }, VK_QUESTION },     // SHIFT "+" = "?"
-    { VK_BACKSLASH,   { 0, 0, 0, 1 }, VK_GRAVEACCENT },  // SHIFT "\" = "`"
+    { VK_BACKSLASH,   { 0, 0, 0, 1 }, VK_GRAVEACCENTDEAD},//SHIFT "\" = "`"
     { VK_aring,       { 0, 0, 0, 1 }, VK_ARING },        // SHIFT "å" = "Å"
     { VK_ARING,       { 0, 0, 0, 1 }, VK_aring },        // SHIFT "Å" = "å"
     { VK_DIAERESIS,   { 0, 0, 0, 1 }, VK_CARET },        // SHIFT "¨" = "^"
@@ -1014,8 +1014,8 @@ const KeyboardLayout NorwegianLayout{
     { VK_8,           { 0, 0, 1, 0 }, VK_LEFTBRACKET },  // ALTGR "8" = "["
     { VK_9,           { 0, 0, 1, 0 }, VK_RIGHTBRACKET }, // ALTGR "9" = "]"
     { VK_0,           { 0, 0, 1, 0 }, VK_RIGHTBRACE },   // ALTGR "0" = "}"
-    { VK_BACKSLASH,   { 0, 0, 1, 0 }, VK_ACUTEACCENT },  // ALTGR "\" = "´"
-    { VK_DIAERESIS,   { 0, 0, 1, 0 }, VK_TILDE },        // ALTGR "¨" = "~"
+    { VK_BACKSLASH,   { 0, 0, 1, 0 }, VK_ACUTEACCENT },  // ALTGR "\" = "´" Doesn't work
+    { VK_DIAERESIS,   { 0, 0, 1, 0 }, VK_TILDEDEAD },    // ALTGR "¨" = "~" Doesn't work
     { VK_e,           { 0, 0, 1, 0 }, VK_EURO },         // ALTGR "e" = "€"
     { VK_m,           { 0, 0, 1, 0 }, VK_MU },           // ALTGR "m" = "µ"
     { VK_4,           { 0, 0, 1, 1 }, VK_YEN },          // ALTGR "4" = "￥"
@@ -1036,38 +1036,54 @@ const KeyboardLayout NorwegianLayout{
     { VK_C,           { 0, 0, 1, 1 }, VK_CEDILLA_c },    // SHIFT ALTGR "C" = "ç"
     { VK_COMMA,       { 0, 0, 1, 0 }, VK_LESS },         // ALTGR "," = "<"
     { VK_PERIOD,      { 0, 0, 1, 0 }, VK_GREATER },      // ALTGR "." = ">"
+    { VK_DIAERESIS,   { 0, 0, 1, 1 }, VK_TILDE },        // SHIFT ALTGR "¨" = "~"
+    { VK_BACKSLASH,   { 0, 0, 1, 1 }, VK_VERTICALBAR },  // SHIFT ALTGR "\" = "|"
+    { VK_LESS,        { 0, 0, 1, 1 }, VK_BACKSLASH },    // SHIFT ALTGR "<" = "\"
+    { VK_VERTICALBAR, { 0, 0, 1, 0 }, VK_GRAVEACCENT },  // ALTGR "|" = "`"
+    { VK_VERTICALBAR, { 0, 0, 1, 1 }, VK_FRAC12 },       // SHIFT ALTGR "|" = "½"
+    { VK_a,           { 0, 0, 1, 0 }, VK_alpha },        // ALTGR "a" = "-" 
+    { VK_b,           { 0, 0, 1, 0 }, VK_beta },         // ALTGR "b" = "-" 
+    { VK_g,           { 0, 0, 1, 0 }, VK_Gamma },        // ALTGR "g" = "-" 
+    { VK_d,           { 0, 0, 1, 0 }, VK_delta },        // ALTGR "d" = "δ"
+    { VK_n,           { 0, 0, 1, 0 }, VK_epsilon },      // ALTGR "n" = "-" 
+    { VK_h,           { 0, 0, 1, 0 }, VK_theta },        // ALTGR "h" = "-" 
+    { VK_p,           { 0, 0, 1, 0 }, VK_pi },           // ALTGR "p" = "π"
+    { VK_s,           { 0, 0, 1, 0 }, VK_sigma },        // ALTGR "s" = "-" 
+    { VK_t,           { 0, 0, 1, 0 }, VK_tau },          // ALTGR "t" = "-" 
+    { VK_f,           { 0, 0, 1, 0 }, VK_phi },          // ALTGR "f" = "-" 
+    { VK_o,           { 0, 0, 1, 0 }, VK_Omega },        // ALTGR "o" = "-" 
     { VK_NONE,        { 0, 0, 0, 0 }, VK_NONE }          // END MARKER
   },
 
   // deadkeys
   {
-    VK_GRAVEACCENT, // `
-    VK_ACUTEACCENT, // ´
+    VK_GRAVEACCENTDEAD,// `
+    VK_ACUTEACCENT, // ´ Doesn't work
     VK_DIAERESIS,   // ¨
     VK_CARET,       // ^
-    VK_TILDE,       // ~
+    VK_TILDEDEAD,   // ~ Doesn't work
     VK_NONE         // END MARKER
   },
 
   // deadkeys translation
   {
-    { VK_GRAVEACCENT, VK_SPACE, VK_GRAVEACCENT },
-    { VK_ACUTEACCENT, VK_SPACE, VK_ACUTEACCENT },
+    { VK_GRAVEACCENTDEAD, VK_SPACE, VK_GRAVEACCENT },
+    { VK_ACUTEACCENT, VK_SPACE, VK_ACUTEACCENT }, // Doesn't work
     { VK_DIAERESIS, VK_SPACE, VK_DIAERESIS },
     { VK_CARET, VK_SPACE, VK_CARET },
-    { VK_TILDE, VK_SPACE, VK_TILDE },
+    { VK_TILDEDEAD, VK_SPACE, VK_TILDE }, // Doesn't work
 
-    { VK_GRAVEACCENT, VK_a, VK_GRAVE_a },
-    { VK_GRAVEACCENT, VK_e, VK_GRAVE_e },
-    { VK_GRAVEACCENT, VK_i, VK_GRAVE_i },
-    { VK_GRAVEACCENT, VK_o, VK_GRAVE_o },
-    { VK_GRAVEACCENT, VK_u, VK_GRAVE_u },
+    { VK_GRAVEACCENTDEAD, VK_a, VK_GRAVE_a },
+    { VK_GRAVEACCENTDEAD, VK_e, VK_GRAVE_e },
+    { VK_GRAVEACCENTDEAD, VK_i, VK_GRAVE_i },
+    { VK_GRAVEACCENTDEAD, VK_o, VK_GRAVE_o },
+    { VK_GRAVEACCENTDEAD, VK_u, VK_GRAVE_u },
 
-    { VK_GRAVEACCENT, VK_A, VK_GRAVE_A },
-    { VK_GRAVEACCENT, VK_E, VK_GRAVE_E },
-    { VK_GRAVEACCENT, VK_I, VK_GRAVE_I },
-    { VK_GRAVEACCENT, VK_O, VK_GRAVE_O },
-    { VK_GRAVEACCENT, VK_U, VK_GRAVE_U },
+    { VK_GRAVEACCENTDEAD, VK_A, VK_GRAVE_A },
+    { VK_GRAVEACCENTDEAD, VK_E, VK_GRAVE_E },
+    { VK_GRAVEACCENTDEAD, VK_I, VK_GRAVE_I },
+    { VK_GRAVEACCENTDEAD, VK_O, VK_GRAVE_O },
+    { VK_GRAVEACCENTDEAD, VK_U, VK_GRAVE_U },
 
     { VK_ACUTEACCENT, VK_a, VK_ACUTE_a },
     { VK_ACUTEACCENT, VK_e, VK_ACUTE_e },
@@ -1109,12 +1125,12 @@ const KeyboardLayout NorwegianLayout{
     { VK_CARET, VK_O, VK_CARET_O },
     { VK_CARET, VK_U, VK_CARET_U },
 
-    { VK_TILDE, VK_n, VK_TILDE_n },
-    { VK_TILDE, VK_N, VK_TILDE_N },
-    { VK_TILDE, VK_a, VK_TILDE_a },
-    { VK_TILDE, VK_A, VK_TILDE_A },
-    { VK_TILDE, VK_o, VK_TILDE_o },
-    { VK_TILDE, VK_O, VK_TILDE_O },
+    { VK_TILDEDEAD, VK_n, VK_TILDE_n },
+    { VK_TILDEDEAD, VK_N, VK_TILDE_N },
+    { VK_TILDEDEAD, VK_a, VK_TILDE_a },
+    { VK_TILDEDEAD, VK_A, VK_TILDE_A },
+    { VK_TILDEDEAD, VK_o, VK_TILDE_o },
+    { VK_TILDEDEAD, VK_O, VK_TILDE_O },
 
     { VK_NONE, VK_NONE, VK_NONE } // END MARKER
   },
