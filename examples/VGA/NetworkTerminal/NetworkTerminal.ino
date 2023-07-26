@@ -394,7 +394,7 @@ void exe_keyb()
 
 void setup()
 {
-  //Serial.begin(115200); // DEBUG ONLY
+  // Serial.begin(115200); // DEBUG ONLY
 
 #ifdef GRAPHCTRLR
   disableCore0WDT();
